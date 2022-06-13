@@ -1,5 +1,4 @@
 import {
-  Box,
   Text,
   Stack,
   VStack,
@@ -9,10 +8,13 @@ import {
   Button,
   Flex,
   Spacer,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Alert } from "../components/atoms/AlertDialog";
 import { useRouter } from "next/router";
 
+// temporary dummy data
 const user = {
   nama_lengkap: "Zaki",
   tanggal_lahir: "2008-11-11",
@@ -26,76 +28,38 @@ const patient = {
   pasien: {
     pasien_id: "123",
     nama_lengkap: "Zaki",
-    nik: "99976663331",
+    nik: "999766633312",
   },
 };
 
-const BadRequest = () => {
-  const [isValid, setIsValid] = useState(false);
-
-  if (isValid) {
-    return <UserDataSearch />;
-  }
-
-  console.log(isValid);
-  return (
-    <Box
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Stack spacing="5" textAlign="center">
-        <Box>
-          <Text fontSize="2xl" fontWeight="bold">
-            Data tidak sesuai dengan Data Diri.
-          </Text>
-          <Text fontSize="2xl" fontWeight="bold">
-            Cek data atau nomor pasien kembali.
-          </Text>
-        </Box>
-        <Box alignSelf="center">
-          <Button onClick={() => setIsValid((prevState) => !prevState)}>
-            Kembali
-          </Button>
-        </Box>
-      </Stack>
-    </Box>
-  );
-};
-
 const UserDataSearch = () => {
+  const router = useRouter();
   const [isValid, setIsValid] = useState(true);
+  const {
+    isOpen: isOpenAlert1,
+    onOpen: onOpenAlert1,
+    onClose: onCloseAlert1,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenAlert2,
+    onOpen: onOpenAlert2,
+    onClose: onCloseAlert2,
+  } = useDisclosure();
 
   const handleClick = () => {
-    // if (
-    //   typeof patient.rumah_sakit !== "undefined" &&
-    //   typeof patient.pasien.pasien_id !== "undefined"
-    // ) {
     if (
       patient.rumah_sakit === "karya medika" &&
-      patient.pasien.pasien_id === "1234"
+      patient.pasien.pasien_id === "123"
     ) {
       if (user.nik === patient.pasien.nik) {
         setIsValid(true);
       } else {
-        setIsValid(false);
+        onOpenAlert1();
       }
     } else {
-      alert("mohon periksa kembali data rumah sakit dan pasien id anda");
+      onOpenAlert2();
     }
-    // } else {
-    //   alert("mohon periksa kembali data rumah sakit dan pasien id");
-    // }
   };
-
-  if (!isValid) {
-    return <BadRequest />;
-  }
-
-  console.log(isValid);
 
   return (
     <>
@@ -120,10 +84,29 @@ const UserDataSearch = () => {
           Konfirmasi
         </Button>
         <Flex>
-          <Button alignSelf="center">Sebelumnya</Button>
+          <Button
+            alignSelf="center"
+            onClick={() => router.push("/registration")}
+          >
+            Sebelumnya
+          </Button>
           <Spacer />
           <Button alignSelf="center">Selanjutnya</Button>
         </Flex>
+        <Alert
+          isOpen={isOpenAlert1}
+          onClose={onCloseAlert1}
+          title={"Error"}
+          text={
+            "Data pasien tidak sesuai dengan Data Diri. Cek data atau nomor pasien kembali"
+          }
+        />
+        <Alert
+          isOpen={isOpenAlert2}
+          onClose={onCloseAlert2}
+          title={"Error"}
+          text={"Mohon periksa kembali data rumah sakit dan pasien id anda"}
+        />
       </Stack>
     </>
   );

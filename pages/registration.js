@@ -15,7 +15,7 @@ const RegistUser = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    router.push("/userdatasearch");
+    router.push("/user-data-search");
   };
   return (
     <>

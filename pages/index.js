@@ -1,16 +1,8 @@
-import Head from "next/head";
-import { Box, Stack, Text, Input, Button } from "@chakra-ui/react";
+import { Box, Stack, Text, Input, Button, Center } from "@chakra-ui/react";
 
 export default function Home() {
   return (
-    <Box
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
+    <Center height="xl">
       <Stack spacing="5" textAlign="center">
         <Text fontSize="5xl" fontWeight="bold">
           Lorem Ipsum
@@ -20,6 +12,6 @@ export default function Home() {
           <Button>Register Now</Button>
         </Box>
       </Stack>
-    </Box>
+    </Center>
   );
 }

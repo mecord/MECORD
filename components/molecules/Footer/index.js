@@ -1,40 +1,15 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden,
 } from "@chakra-ui/react";
+import { SocialButton } from "../../atoms/SocialButton";
 import { FaTwitter, FaFacebook } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 
-const SocialButton = ({ children, label, href }) => {
-  return (
-    <chakra.button
-      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-      rounded={"full"}
-      w={8}
-      h={8}
-      cursor={"pointer"}
-      as={"a"}
-      href={href}
-      display={"inline-flex"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      transition={"background 0.3s ease"}
-      _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
-      }}
-    >
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
-  );
-};
-
-export default function FooterWithSocial() {
+export default function Footer() {
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}

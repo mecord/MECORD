@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
-import ButtonHelp from "../../core/buttonhelp";
+import ButtonHelp from "../../atoms/ButtonHelp";
 
-const MainMain = ({ children }) => (
+const Main = ({ children }) => (
   <>
     <Box flexGrow={1} minH={{ base: "xl" }}>
       {children}
@@ -10,4 +10,4 @@ const MainMain = ({ children }) => (
   </>
 );
 
-export default MainMain;
+export default Main;
