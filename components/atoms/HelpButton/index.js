@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Box,
   Button,
@@ -12,7 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-const ButtonHelp = () => {
+export const HelpButton = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -26,19 +27,11 @@ const ButtonHelp = () => {
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <Text>Hello World</Text>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+          <ModalBody>{children}</ModalBody>
         </ModalContent>
       </Modal>
     </>
   );
 };
 
-export default ButtonHelp;
+export default HelpButton;

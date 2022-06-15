@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import HelpButton from "../components/atoms/HelpButton";
 
 const RegistUser = () => {
   const router = useRouter();
@@ -60,6 +61,7 @@ const RegistUser = () => {
           Selanjutnya
         </Button>
       </Stack>
+      <HelpButton>Registration</HelpButton>
     </>
   );
 };
