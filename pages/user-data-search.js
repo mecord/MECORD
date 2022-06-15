@@ -50,6 +50,11 @@ const UserDataSearch = () => {
     router.push("/registration");
   };
 
+  const handleClickNext = (e) => {
+    e.preventDefault();
+    router.push("/confirmation");
+  };
+
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
@@ -73,10 +78,12 @@ const UserDataSearch = () => {
       </Button>
       <Flex>
         <Button alignSelf="center" onClick={handleClickPrev}>
-          Sebelumnya
+          Kembali
         </Button>
         <Spacer />
-        <Button alignSelf="center">Selanjutnya</Button>
+        <Button alignSelf="center" onClick={handleClickNext}>
+          Selanjutnya
+        </Button>
       </Flex>
       <Alert
         isOpen={isOpenAlert1}
@@ -92,7 +99,7 @@ const UserDataSearch = () => {
         title={"Error"}
         text={"Mohon periksa kembali data rumah sakit dan pasien id anda"}
       />
-      <HelpButton>Hello Buddies</HelpButton>
+      <HelpButton>User Data Search</HelpButton>
     </Stack>
   );
 };
