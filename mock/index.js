@@ -14,3 +14,8 @@ export const patient = {
     nik: "999766633312",
   },
 };
+
+export const login = {
+  email: "user@gmail.com",
+  password: "123456",
+};
