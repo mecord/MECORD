@@ -1,4 +1,4 @@
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Nav from "../../molecules/Navbar";
 import Footer from "../../molecules/footer";
 

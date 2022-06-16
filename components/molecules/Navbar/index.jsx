@@ -1,7 +1,5 @@
 import {
   Box,
-  Flex,
-  Link,
   Button,
   useColorModeValue,
   Stack,
