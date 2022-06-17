@@ -5,8 +5,6 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogOverlay,
-  propNames,
-  Text,
 } from "@chakra-ui/react";
 import React from "react";
 

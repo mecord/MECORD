@@ -17,7 +17,7 @@ import { user, patient } from "../../../mock";
 
 const DataSearch = () => {
   const router = useRouter();
-  const [isValid, setIsValid] = useState(true);
+  const [_isValid, setIsValid] = useState(true);
   const {
     isOpen: isOpenAlert1,
     onOpen: onOpenAlert1,

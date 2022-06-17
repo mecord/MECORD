@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
   Box,
   Button,
@@ -6,11 +5,9 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Text,
 } from "@chakra-ui/react";
 
 export const HelpButton = ({ children }) => {

@@ -43,7 +43,6 @@ const Login = () => {
   } = useDisclosure();
 
   const handleOnSubmit = (data) => {
-    console.log(data);
     if (data.email !== login.email || data.password !== login.password) {
       onOpenAlert();
       return;
