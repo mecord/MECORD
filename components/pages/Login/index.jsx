@@ -2,6 +2,7 @@ import {
   Button,
   Center,
   FormControl,
+  FormLabel,
   FormErrorMessage,
   IconButton,
   Input,
@@ -10,6 +11,7 @@ import {
   Stack,
   Text,
   useDisclosure,
+  Box,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -54,23 +56,25 @@ const Login = () => {
 
   return (
     <Center height="xl">
-      <Stack spacing="5">
-        <Text fontSize="5xl" fontWeight="bold" textAlign="center">
-          Login Admin
+      <Stack spacing="10">
+        <Text textStyle="title-semi-medium" textAlign="center">
+          HOSPITAL LOGIN
         </Text>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <Stack spacing="5">
             <FormControl isInvalid={errors.email}>
-              <Input {...register("email")} placeholder="Email" />
+              <FormLabel>Admin E-mail</FormLabel>
+              <Input variant="white" {...register("email")} />
               <FormErrorMessage>
                 {errors.email && errors.email?.message}
               </FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.password}>
+              <FormLabel>Password</FormLabel>
               <InputGroup size="md">
                 <Input
+                  variant="white"
                   {...register("password")}
-                  placeholder="Password"
                   pr="4.5rem"
                   type={showPassword ? "text" : "password"}
                 />
@@ -88,10 +92,11 @@ const Login = () => {
                 {errors.password && errors.password?.message}
               </FormErrorMessage>
             </FormControl>
-
-            <Button colorScheme="blue" type="submit">
-              Login
-            </Button>
+            <Box alignSelf="center">
+              <Button variant="blue" type="submit">
+                Login
+              </Button>
+            </Box>
           </Stack>
         </form>
       </Stack>

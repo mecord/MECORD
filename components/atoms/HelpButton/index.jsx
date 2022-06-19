@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -8,16 +7,23 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  IconButton,
 } from "@chakra-ui/react";
+import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
 export const HelpButton = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Box position="fixed" bottom="0" right={[4, null, 16]} insetBlockEnd="20">
-        <Button onClick={onOpen} rounded="full">
+        <IconButton
+          bg="white"
+          onClick={onOpen}
+          rounded="full"
+          icon={<QuestionOutlineIcon w="6" h="6" color="mecord-main" />}
+        >
           ?
-        </Button>
+        </IconButton>
       </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

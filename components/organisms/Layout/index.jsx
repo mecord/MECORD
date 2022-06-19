@@ -4,7 +4,7 @@ import Footer from "../../molecules/Footer";
 
 const Layout = ({ children }) => {
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" bg="mecord-main-2">
       <Nav />
       {children}
       <Footer />

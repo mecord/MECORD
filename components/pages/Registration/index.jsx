@@ -21,42 +21,36 @@ const Registration = () => {
     <>
       <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
         <VStack>
-          <Text>Step 1</Text>
-          <Text fontSize="2xl" fontWeight="bold">
-            DATA DIRI
-          </Text>
+          <Text textStyle="subtitle-small">Step 1</Text>
+          <Text textStyle="title-semi-medium">DATA DIRI</Text>
         </VStack>
-        <SimpleGrid columns={2} spacing={10}>
+        <SimpleGrid columns={[1, null, 2]} spacing={[6, null, 10]}>
           <Stack spacing="6">
             <FormControl>
               <FormLabel>Nama Lengkap</FormLabel>
-              <Input />
+              <Input variant="white" placeholder="Nama Lengkap" />
             </FormControl>
             <FormControl>
               <FormLabel>Tanggal lahir</FormLabel>
-              <Input />
+              <Input variant="white" type="date" />
             </FormControl>
             <FormControl>
               <FormLabel>No Induk Kependudukan</FormLabel>
-              <Input />
+              <Input variant="white" />
             </FormControl>
           </Stack>
           <Stack spacing="6">
             <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input />
+              <FormLabel>E-mail</FormLabel>
+              <Input variant="white" />
             </FormControl>
             <FormControl>
               <FormLabel>Nomor HP Aktif</FormLabel>
-              <Input />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Lorem Ipsum</FormLabel>
-              <Input />
+              <Input variant="white" />
             </FormControl>
           </Stack>
         </SimpleGrid>
-        <Button alignSelf="end" onClick={handleClick}>
+        <Button alignSelf="end" onClick={handleClick} variant="blue">
           Selanjutnya
         </Button>
       </Stack>

@@ -1,13 +1,25 @@
-import { Button, Center, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Flex,
+  Stack,
+  Text,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import ModalEmail from "../../atoms/ModalEmail";
 
 const GenerateQrCode = () => {
+  const {
+    isOpen: isEmailOpen,
+    onOpen: onEmailOpen,
+    onClose: onEmailClose,
+  } = useDisclosure();
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
-        <Text>Step 4</Text>
-        <Text fontSize="2xl" fontWeight="bold">
-          Simpan QR
-        </Text>
+        <Text textStyle="subtitle-small">Step 4</Text>
+        <Text textStyle="title-semi-medium">SIMPAN QR</Text>
       </VStack>
       <Flex color="white" flexDirection={["column", null, "row"]}>
         <Stack
@@ -22,8 +34,18 @@ const GenerateQrCode = () => {
         >
           <Text>Box 1</Text>
         </Stack>
-        <Stack flex="3" bg="gray.300" spacing="5" p="5" h="xs" rounded="10">
-          <Text>Box 2</Text>
+        <Stack
+          flex="3"
+          bg="white"
+          spacing="5"
+          p="5"
+          h="xs"
+          rounded="10"
+          color="black"
+        >
+          <Text variant="subtitle-small" fontWeight="bold">
+            PENGGUNAAN QR
+          </Text>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus
             dolor nec pellentesque aliquet. In gravida velit at mi tincidunt
@@ -38,8 +60,11 @@ const GenerateQrCode = () => {
         </Stack>
       </Flex>
       <Center>
-        <Button>Selesai & Download</Button>
+        <Button variant="blue" onClick={onEmailOpen}>
+          Selesai & Download
+        </Button>
       </Center>
+      <ModalEmail isOpen={isEmailOpen} onClose={onEmailClose} />
     </Stack>
   );
 };
