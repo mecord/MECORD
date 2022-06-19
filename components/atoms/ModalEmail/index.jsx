@@ -14,8 +14,15 @@ import EmailSuccess from "../../../assets/img/email-success.png";
 import { useState } from "react";
 
 export const ModalEmail = ({ isOpen, onClose }) => {
-  const [sendEmail, setSendEmail] = useState();
-  const handleClick = () => setSendEmail(!sendEmail);
+  const [sendEmail, setSendEmail] = useState(false);
+
+  const handleClick = () => setSendEmail(true);
+
+  const handleClickClose = () => {
+    setSendEmail(!sendEmail);
+    onClose();
+  };
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -39,17 +46,25 @@ export const ModalEmail = ({ isOpen, onClose }) => {
           </ModalBody>
 
           <ModalFooter alignSelf="center">
-            <Button
-              variant="outline"
-              colorScheme="mecord-main"
-              mr={3}
-              onClick={onClose}
-            >
-              Tidak
-            </Button>
-            <Button variant="blue" onClick={handleClick}>
-              Kirim
-            </Button>
+            {sendEmail ? (
+              <Button variant="blue" onClick={handleClickClose}>
+                Selesai
+              </Button>
+            ) : (
+              <>
+                <Button
+                  variant="outline"
+                  colorScheme="mecord-main"
+                  mr={3}
+                  onClick={onClose}
+                >
+                  Tidak
+                </Button>
+                <Button variant="blue" onClick={handleClick}>
+                  Kirim
+                </Button>
+              </>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>
