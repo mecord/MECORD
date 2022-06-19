@@ -15,15 +15,19 @@ export const HelpButton = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box position="fixed" bottom="0" right={[4, null, 16]} insetBlockEnd="20">
+      <Box
+        position="fixed"
+        bottom="0"
+        right={[4, null, 16]}
+        insetBlockEnd="20"
+        zIndex="1"
+      >
         <IconButton
           bg="white"
           onClick={onOpen}
           rounded="full"
           icon={<QuestionOutlineIcon w="6" h="6" color="mecord-main" />}
-        >
-          ?
-        </IconButton>
+        />
       </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
