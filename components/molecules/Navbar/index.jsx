@@ -1,34 +1,12 @@
-import {
-  Box,
-  Button,
-  useColorModeValue,
-  Stack,
-  useColorMode,
-  Container,
-} from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { Text, Box, Stack, Container } from "@chakra-ui/react";
 
 export default function Nav() {
-  const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
-    >
-      <Container
-        as={Stack}
-        maxW={"6xl"}
-        py={4}
-        direction={{ base: "row" }}
-        spacing={4}
-        justify={{ base: "space-between" }}
-      >
-        <Box>Logo</Box>
-        <Stack>
-          <Button onClick={toggleColorMode} w={8} h={8}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </Button>
-        </Stack>
+    <Box bg="mecord-main" zIndex="1">
+      <Container as={Stack} maxW={"6xl"} py={4}>
+        <Text textStyle="title-small" fontWeight="bold" color="white">
+          MECORD.
+        </Text>
       </Container>
     </Box>
   );

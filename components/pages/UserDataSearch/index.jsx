@@ -57,30 +57,28 @@ const DataSearch = () => {
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
-        <Text>Step 2</Text>
-        <Text fontSize="2xl" fontWeight="bold">
-          Riwayat Kesehatan
-        </Text>
+        <Text textStyle="subtitle-small">Step 2</Text>
+        <Text textStyle="title-semi-medium">RIWAYAT KESEHATAN</Text>
       </VStack>
-      <Stack spacing="6">
+      <Stack spacing="6" px={{ md: "24" }}>
         <FormControl>
           <FormLabel>Rumah Sakit</FormLabel>
-          <Input />
+          <Input variant="white" placeholder="Cari Rumah Sakit" />
         </FormControl>
         <FormControl>
           <FormLabel>Patient Id</FormLabel>
-          <Input />
+          <Input variant="white" />
         </FormControl>
       </Stack>
-      <Button alignSelf="center" onClick={handleClickConfirm}>
+      <Button variant="blue" alignSelf="center" onClick={handleClickConfirm}>
         Konfirmasi
       </Button>
       <Flex>
-        <Button alignSelf="center" onClick={handleClickPrev}>
+        <Button variant="white" alignSelf="center" onClick={handleClickPrev}>
           Kembali
         </Button>
         <Spacer />
-        <Button alignSelf="center" onClick={handleClickNext}>
+        <Button variant="blue" alignSelf="center" onClick={handleClickNext}>
           Selanjutnya
         </Button>
       </Flex>

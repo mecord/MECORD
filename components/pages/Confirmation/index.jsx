@@ -30,12 +30,10 @@ const Confirmation = () => {
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
-        <Text>Step 3</Text>
-        <Text fontSize="2xl" fontWeight="bold">
-          Riwayat Kesehatan
-        </Text>
+        <Text textStyle="subtitle-small">Step 2</Text>
+        <Text textStyle="title-semi-medium">RIWAYAT KESEHATAN</Text>
       </VStack>
-      <Stack p="10" spacing="4" bg="gray.200" rounded="10">
+      <Stack p="10" spacing="4" bg="white" rounded="10">
         <Text textAlign="center">Oentari Ratna Anjani</Text>
         <Text textAlign="center">NIK : 0374850248542; 60 tahun</Text>
         <Box bg="gray.100">
@@ -68,11 +66,11 @@ const Confirmation = () => {
         </Box>
       </Stack>
       <Flex>
-        <Button alignSelf="center" onClick={handleClickPrev}>
+        <Button variant="white" alignSelf="center" onClick={handleClickPrev}>
           Kembali
         </Button>
         <Spacer />
-        <Button alignSelf="center" onClick={handleClickNext}>
+        <Button variant="blue" alignSelf="center" onClick={handleClickNext}>
           Konfirmasi
         </Button>
       </Flex>
