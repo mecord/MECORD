@@ -9,38 +9,58 @@ import {
   Flex,
   Spacer,
   useDisclosure,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Alert } from "../../atoms/AlertDialog";
 import { useRouter } from "next/router";
-import { user, patient } from "../../../mock";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRegist } from "../../../store/registrationStore";
+import { useDataVerif } from "../../../store/dataVerifStore";
+
+const schema = yup.object().shape({
+  rumah_sakit: yup.string().min(3).required(),
+  patient_id: yup.string().required(),
+});
 
 const DataSearch = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const { setDataVerif } = useDataVerif((state) => state);
+  const { regist } = useRegist((state) => state);
+
   const router = useRouter();
-  const [_isValid, setIsValid] = useState(true);
+  const [dataPatient, setDataPatient] = useState();
+
   const {
     isOpen: isOpenAlert1,
     onOpen: onOpenAlert1,
     onClose: onCloseAlert1,
   } = useDisclosure();
-  const {
-    isOpen: isOpenAlert2,
-    onOpen: onOpenAlert2,
-    onClose: onCloseAlert2,
-  } = useDisclosure();
 
-  const handleClickConfirm = () => {
-    if (
-      patient.rumah_sakit === "karya medika" &&
-      patient.pasien.pasien_id === "123"
-    ) {
-      if (user.nik === patient.pasien.nik) {
-        setIsValid(true);
-      } else {
-        onOpenAlert1();
-      }
+  const handleOnSubmit = async (data) => {
+    getData(data);
+
+    const test =
+      dataPatient &&
+      dataPatient[0].patient.find((datap) => {
+        return datap.patientID == data.patient_id;
+      });
+
+    if (test && test.nik === regist.nik) {
+      setDataVerif(test && test.hospital_visit);
+      router.push("/confirmation");
     } else {
-      onOpenAlert2();
+      await onOpenAlert1();
     }
   };
 
@@ -54,25 +74,47 @@ const DataSearch = () => {
     router.push("/confirmation");
   };
 
+  const getData = async (data) => {
+    await axios
+      .get("http://localhost:8000/hospital", {
+        params: { rumah_sakit: data.rumah_sakit },
+      })
+      .then((res) => {
+        setDataPatient(res.data);
+      });
+  };
+
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
         <Text textStyle="subtitle-small">Step 2</Text>
         <Text textStyle="title-semi-medium">RIWAYAT KESEHATAN</Text>
       </VStack>
-      <Stack spacing="6" px={{ md: "24" }}>
-        <FormControl>
-          <FormLabel>Rumah Sakit</FormLabel>
-          <Input variant="white" placeholder="Cari Rumah Sakit" />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Patient Id</FormLabel>
-          <Input variant="white" />
-        </FormControl>
-      </Stack>
-      <Button variant="blue" alignSelf="center" onClick={handleClickConfirm}>
-        Konfirmasi
-      </Button>
+      <form onSubmit={handleSubmit(handleOnSubmit)}>
+        <Stack spacing="6" px={{ md: "24" }}>
+          <FormControl isInvalid={errors.rumah_sakit}>
+            <FormLabel>Rumah Sakit</FormLabel>
+            <Input
+              variant="white"
+              placeholder="Cari Rumah Sakit"
+              {...register("rumah_sakit")}
+            />
+            <FormErrorMessage>
+              {errors.rumah_sakit && errors.rumah_sakit?.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.patient_id}>
+            <FormLabel>Patient Id</FormLabel>
+            <Input variant="white" {...register("patient_id")} />
+            <FormErrorMessage>
+              {errors.patient_id && errors.patient_id?.message}
+            </FormErrorMessage>
+          </FormControl>
+          <Button variant="blue" alignSelf="center" type="submit">
+            Konfirmasi
+          </Button>
+        </Stack>
+      </form>
       <Flex>
         <Button variant="white" alignSelf="center" onClick={handleClickPrev}>
           Kembali
@@ -89,12 +131,6 @@ const DataSearch = () => {
         text={
           "Data pasien tidak sesuai dengan Data Diri. Cek data atau nomor pasien kembali"
         }
-      />
-      <Alert
-        isOpen={isOpenAlert2}
-        onClose={onCloseAlert2}
-        title={"Error"}
-        text={"Mohon periksa kembali data rumah sakit dan pasien id anda"}
       />
     </Stack>
   );

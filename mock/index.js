@@ -11,7 +11,7 @@ export const patient = {
   pasien: {
     pasien_id: "123",
     nama_lengkap: "Zaki",
-    nik: "999766633312",
+    nik: "99976663331",
   },
 };
 

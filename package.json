@@ -7,7 +7,8 @@
     "db": "json-server --watch mock/db.json --port 3001 -m ./node_modules/json-server-auth",
     "dev": "next dev",
     "lint": "next lint --fix",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.2",
@@ -17,9 +18,11 @@
     "@fontsource/inter": "^4.5.11",
     "@fontsource/montserrat": "^4.5.11",
     "@hookform/resolvers": "^2.9.1",
+    "@testing-library/jest-dom": "^5.16.4",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "axios": "^0.27.2",
     "framer-motion": "^6.3.11",
+    "jest-environment-jsdom": "^28.1.1",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0",
     "next": "12.1.6",
@@ -27,13 +30,18 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.32.1",
     "react-icons": "^4.4.0",
+    "react-qr-code": "^2.0.7",
     "typescript": "^4.7.2",
-    "yup": "^0.32.11"
+    "yarn": "^1.22.19",
+    "yup": "^0.32.11",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^13.3.0",
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "eslint-plugin-react": "^7.30.0",
-    "husky": "4.3.8"
+    "husky": "4.3.8",
+    "jest": "^28.1.1"
   }
 }
