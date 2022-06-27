@@ -55,7 +55,7 @@ const Confirmation = () => {
             </Thead>
             <Tbody>
               {dataVerif.map((e) => (
-                <Tr key={e.no_invoice}>
+                <Tr key="">
                   <Td>{e.tgl_kunjungan}</Td>
                   <Td>{e.no_invoice}</Td>
                   <Td>{e.cabang}</Td>

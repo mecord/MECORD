@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 export const useDataVerif = create(
   persist((set) => ({
-    dataVerif: "",
+    dataVerif: () => "",
     setDataVerif: (dataVerif) => set({ dataVerif }),
   }))
 );
