@@ -1,5 +1,5 @@
 import HelpButton from "../components/atoms/HelpButton";
-import DashboardAdmin from "../components/pages/HospitalDashboard.tsx";
+import DashboardAdmin from "../components/pages/HospitalDashboard";
 
 const HospitalDashboard = () => {
   return (
