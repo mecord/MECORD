@@ -11,23 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegist } from "../../../store/registrationStore";
-
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-const schema = yup.object().shape({
-  nama_lengkap: yup.string().min(3).required(),
-  tanggal_lahir: yup.string().required(),
-  nik: yup.string().required(),
-  email: yup.string().email().required(),
-  no_hp: yup
-    .string()
-    .matches(phoneRegExp, "Nomor telepon tidak valid!")
-    .required(),
-});
+import { registrationSchema } from "../../../utils/schema/registrationSchema.ts";
 
 const Registration = () => {
   const {
@@ -35,7 +21,7 @@ const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registrationSchema),
   });
 
   const { setRegist } = useRegist((state) => state);
@@ -61,7 +47,7 @@ const Registration = () => {
                 <FormLabel>Nama Lengkap</FormLabel>
                 <Input variant="white" {...register("nama_lengkap")} />
                 <FormErrorMessage>
-                  {errors.nama_lengkap && errors.nama_lengkap?.message}
+                  {errors.nama_lengkap && errors.nama_lengkap.message}
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors.tanggal_lahir}>
@@ -72,7 +58,7 @@ const Registration = () => {
                   {...register("tanggal_lahir")}
                 />
                 <FormErrorMessage>
-                  {errors.tanggal_lahir && errors.tanggal_lahir?.message}
+                  {errors.tanggal_lahir && errors.tanggal_lahir.message}
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors.nik}>
@@ -88,14 +74,14 @@ const Registration = () => {
                 <FormLabel>E-mail</FormLabel>
                 <Input variant="white" {...register("email")} />
                 <FormErrorMessage>
-                  {errors.email && errors.email?.message}
+                  {errors.email && errors.email.message}
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors.no_hp}>
                 <FormLabel>Nomor HP Aktif</FormLabel>
                 <Input variant="white" {...register("no_hp")} type="number" />
                 <FormErrorMessage>
-                  {errors.no_hp && errors.no_hp?.message}
+                  {errors.no_hp && errors.no_hp.message}
                 </FormErrorMessage>
               </FormControl>
             </Stack>

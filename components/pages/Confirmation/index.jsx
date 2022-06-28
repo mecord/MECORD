@@ -54,13 +54,13 @@ const Confirmation = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {dataVerif.map((e) => (
+              {dataVerif.map((records) => (
                 <Tr key="">
-                  <Td>{e.tgl_kunjungan}</Td>
-                  <Td>{e.no_invoice}</Td>
-                  <Td>{e.cabang}</Td>
-                  <Td>{e.dokter}</Td>
-                  <Td>{e.kegiatan}</Td>
+                  <Td>{records.tgl_kunjungan}</Td>
+                  <Td>{records.no_invoice}</Td>
+                  <Td>{records.cabang}</Td>
+                  <Td>{records.dokter}</Td>
+                  <Td>{records.kegiatan}</Td>
                 </Tr>
               ))}
             </Tbody>

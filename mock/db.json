@@ -44,11 +44,34 @@
         },
         {
           "patientID": 2,
-          "nama_lengkap": "karya medika 2",
+          "nama_lengkap": "karya medika 1",
           "tanggal_lahir": "12/09/1999",
-          "nik": "999000666",
+          "nik": "999000777",
           "email": "user@gmail.com",
-          "no_hp": "085884187769"
+          "no_hp": "085884187769",
+          "hospital_visit": [
+            {
+              "tgl_kunjungan": "28 April 2022",
+              "no_invoice": "INV3029583911",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Rontgen"
+            },
+            {
+              "tgl_kunjungan": "28 Juni 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Periksa Kesehatan Mata"
+            },
+            {
+              "tgl_kunjungan": "30 September 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Syifa",
+              "kegiatan": "Rontgen"
+            }
+          ]
         }
       ]
     },

@@ -16,15 +16,10 @@ import { Alert } from "../../atoms/AlertDialog";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegist } from "../../../store/registrationStore";
 import { useDataVerif } from "../../../store/dataVerifStore";
-
-const schema = yup.object().shape({
-  rumah_sakit: yup.string().min(3).required(),
-  patient_id: yup.string().required(),
-});
+import { userDataSearchSchema } from "../../../utils/schema/userDataSearch.ts";
 
 const DataSearch = () => {
   const {
@@ -32,7 +27,7 @@ const DataSearch = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(userDataSearchSchema),
   });
 
   const { setDataVerif } = useDataVerif((state) => state);
@@ -48,16 +43,16 @@ const DataSearch = () => {
   } = useDisclosure();
 
   const handleOnSubmit = async (data) => {
-    getData(data);
+    getRecordData(data);
 
-    const test =
+    const findRecordData =
       dataPatient &&
-      dataPatient[0].patient.find((datap) => {
+      dataPatient?.[0].patient.find((datap) => {
         return datap.patientID == data.patient_id;
       });
 
-    if (test && test.nik === regist.nik) {
-      setDataVerif(test && test.hospital_visit);
+    if (findRecordData?.nik === regist.nik) {
+      setDataVerif(findRecordData.hospital_visit);
       router.push("/confirmation");
     } else {
       await onOpenAlert1();
@@ -74,7 +69,7 @@ const DataSearch = () => {
     router.push("/confirmation");
   };
 
-  const getData = async (data) => {
+  const getRecordData = async (data) => {
     await axios
       .get("http://localhost:8000/hospital", {
         params: { rumah_sakit: data.rumah_sakit },
@@ -100,14 +95,14 @@ const DataSearch = () => {
               {...register("rumah_sakit")}
             />
             <FormErrorMessage>
-              {errors.rumah_sakit && errors.rumah_sakit?.message}
+              {errors.rumah_sakit && errors.rumah_sakit.message}
             </FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={errors.patient_id}>
             <FormLabel>Patient Id</FormLabel>
             <Input variant="white" {...register("patient_id")} />
             <FormErrorMessage>
-              {errors.patient_id && errors.patient_id?.message}
+              {errors.patient_id && errors.patient_id.message}
             </FormErrorMessage>
           </FormControl>
           <Button variant="blue" alignSelf="center" type="submit">
