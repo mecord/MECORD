@@ -18,6 +18,7 @@ export const Alert = ({ isOpen, onClose, title, text }) => {
       onClose={onClose}
       isOpen={isOpen}
       isCentered
+      data-testid="test1"
     >
       <AlertDialogOverlay />
 

@@ -11,7 +11,7 @@ import {
   useDisclosure,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { Alert } from "../../atoms/AlertDialog";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -34,7 +34,6 @@ const DataSearch = () => {
   const { regist } = useRegist((state) => state);
 
   const router = useRouter();
-  const [dataPatient, setDataPatient] = useState();
 
   const {
     isOpen: isOpenAlert1,
@@ -43,11 +42,11 @@ const DataSearch = () => {
   } = useDisclosure();
 
   const handleOnSubmit = async (data) => {
-    getRecordData(data);
+    const dataPatient = await getRecordData(data);
 
     const findRecordData =
       dataPatient &&
-      dataPatient?.[0].patient.find((datap) => {
+      dataPatient[0].patient.find((datap) => {
         return datap.patientID == data.patient_id;
       });
 
@@ -55,7 +54,7 @@ const DataSearch = () => {
       setDataVerif(findRecordData.hospital_visit);
       router.push("/confirmation");
     } else {
-      await onOpenAlert1();
+      onOpenAlert1();
     }
   };
 
@@ -70,13 +69,17 @@ const DataSearch = () => {
   };
 
   const getRecordData = async (data) => {
+    let resData;
+
     await axios
       .get("http://localhost:8000/hospital", {
         params: { rumah_sakit: data.rumah_sakit },
       })
       .then((res) => {
-        setDataPatient(res.data);
+        resData = res.data;
       });
+
+    return resData;
   };
 
   return (

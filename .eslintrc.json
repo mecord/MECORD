@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
@@ -17,7 +18,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["import", "react", "@typescript-eslint"],
+  "plugins": ["import", "react", "@typescript-eslint", "jest"],
   "rules": {
     "@typescript-eslint/no-empty-function": ["error"],
     "@typescript-eslint/no-unused-vars": [
