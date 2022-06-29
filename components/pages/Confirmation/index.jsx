@@ -14,8 +14,13 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useRegist } from "../../../store/registrationStore";
+import { useDataVerif } from "../../../store/dataVerifStore";
 
 const Confirmation = () => {
+  const { regist } = useRegist((state) => state);
+  const { dataVerif } = useDataVerif((state) => state);
+
   const router = useRouter();
 
   const handleClickPrev = (e) => {
@@ -27,6 +32,7 @@ const Confirmation = () => {
     e.preventDefault();
     router.push("/generate-qr");
   };
+
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
@@ -34,33 +40,29 @@ const Confirmation = () => {
         <Text textStyle="title-semi-medium">RIWAYAT KESEHATAN</Text>
       </VStack>
       <Stack p="10" spacing="4" bg="white" rounded="10">
-        <Text textAlign="center">Oentari Ratna Anjani</Text>
-        <Text textAlign="center">NIK : 0374850248542; 60 tahun</Text>
+        <Text textAlign="center">{regist.nama_lengkap}</Text>
+        <Text textAlign="center">NIK: {regist.nik}</Text>
         <Box bg="gray.100">
           <Table variant="striped" colorScheme="teal">
             <Thead>
               <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
+                <Th>Tanggal Kunjungan</Th>
+                <Th>No.Invoice</Th>
+                <Th>Cabang</Th>
+                <Th>Dokter</Th>
+                <Th>Kegiatan</Th>
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>inches</Td>
-                <Td>millimetres (mm)</Td>
-                <Td isNumeric>25.4</Td>
-              </Tr>
-              <Tr>
-                <Td>feet</Td>
-                <Td>centimetres (cm)</Td>
-                <Td isNumeric>30.48</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
+              {dataVerif.map((records) => (
+                <Tr key="">
+                  <Td>{records.tgl_kunjungan}</Td>
+                  <Td>{records.no_invoice}</Td>
+                  <Td>{records.cabang}</Td>
+                  <Td>{records.dokter}</Td>
+                  <Td>{records.kegiatan}</Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </Box>

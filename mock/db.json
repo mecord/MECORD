@@ -1,34 +1,131 @@
 {
-    "users": [{
-        "email": "some@email.com",
-        "password": "$2a$10$Wb7MwD/IWsgx9pb6ZzlN1.ptcp1yeKUEChWYoi8nr.wlipZ3TVsT.",
-        "name": "Baru",
-        "id": 1
-    }],
-    "patients": [{
-            "id": 1,
-            "userID": 1,
-            "name": "Zul"
+  "users": [
+    {
+      "email": "some@email.com",
+      "password": "$2a$10$Wb7MwD/IWsgx9pb6ZzlN1.ptcp1yeKUEChWYoi8nr.wlipZ3TVsT.",
+      "name": "Baru",
+      "id": 1
+    }
+  ],
+  "hospital": [
+    {
+      "rumah_sakit": "karya medika",
+      "patient": [
+        {
+          "patientID": 1,
+          "nama_lengkap": "karya medika 1",
+          "tanggal_lahir": "12/09/1999",
+          "nik": "999000666",
+          "email": "user@gmail.com",
+          "no_hp": "085884187769",
+          "hospital_visit": [
+            {
+              "tgl_kunjungan": "28 April 2022",
+              "no_invoice": "INV3029583911",
+              "cabang": "Pondok Indah",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Medical Checkup"
+            },
+            {
+              "tgl_kunjungan": "28 Juni 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Indah",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Medical Checkup"
+            },
+            {
+              "tgl_kunjungan": "30 September 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Indah",
+              "dokter": "Dr.Syifa",
+              "kegiatan": "Rontgen"
+            }
+          ]
         },
         {
-            "id": 2,
-            "userID": 2,
-            "name": "Cath"
-        },
-        {
-            "id": 3,
-            "userID": 3,
-            "name": "Okta"
-        },
-        {
-            "id": 4,
-            "userID": 4,
-            "name": "Iwa"
-        },
-        {
-            "id": 5,
-            "userID": 5,
-            "name": "Imam"
+          "patientID": 2,
+          "nama_lengkap": "karya medika 1",
+          "tanggal_lahir": "12/09/1999",
+          "nik": "999000777",
+          "email": "user@gmail.com",
+          "no_hp": "085884187769",
+          "hospital_visit": [
+            {
+              "tgl_kunjungan": "28 April 2022",
+              "no_invoice": "INV3029583911",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Rontgen"
+            },
+            {
+              "tgl_kunjungan": "28 Juni 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Suharjono",
+              "kegiatan": "Periksa Kesehatan Mata"
+            },
+            {
+              "tgl_kunjungan": "30 September 2022",
+              "no_invoice": "INV3028634211",
+              "cabang": "Pondok Aren",
+              "dokter": "Dr.Syifa",
+              "kegiatan": "Rontgen"
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "rumah_sakit": "siloam",
+      "patient": [
+        {
+          "patientID": 1,
+          "nama_lengkap": "User siloam",
+          "tanggal_lahir": "12/09/1999",
+          "nik": "999000666",
+          "email": "user@gmail.com",
+          "no_hp": "085884187769"
+        }
+      ]
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "userID": 1,
+      "name": "Zul"
+    },
+    {
+      "id": 2,
+      "userID": 2,
+      "name": "Cath"
+    },
+    {
+      "id": 3,
+      "userID": 3,
+      "name": "Okta"
+    },
+    {
+      "id": 4,
+      "userID": 4,
+      "name": "Iwa"
+    },
+    {
+      "id": 5,
+      "userID": 5,
+      "name": "Imam"
+    },
+    {
+      "userID": 5,
+      "name": "tes",
+      "id": 6
+    },
+    {
+      "userID": 5,
+      "name": "tes",
+      "email": "user@gmail.com",
+      "nik": 123123123,
+      "id": 7
+    }
+  ]
 }

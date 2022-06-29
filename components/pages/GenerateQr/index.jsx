@@ -8,6 +8,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import ModalEmail from "../../atoms/ModalEmail";
+import QRCode from "react-qr-code";
+import { useDataVerif } from "../../../store/dataVerifStore";
 
 const GenerateQrCode = () => {
   const {
@@ -15,6 +17,11 @@ const GenerateQrCode = () => {
     onOpen: onEmailOpen,
     onClose: onEmailClose,
   } = useDisclosure();
+
+  const { dataVerif } = useDataVerif((state) => state);
+
+  const values = JSON.stringify(dataVerif);
+
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
       <VStack>
@@ -32,7 +39,9 @@ const GenerateQrCode = () => {
           mb={{ sm: 10 }}
           rounded="10"
         >
-          <Text>Box 1</Text>
+          <Center>
+            <QRCode value={values} bgColor="#fff" fgColor="#black" size="280" />
+          </Center>
         </Stack>
         <Stack
           flex="3"

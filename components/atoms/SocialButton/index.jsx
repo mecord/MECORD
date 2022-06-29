@@ -10,6 +10,7 @@ export const SocialButton = ({ children, label, href }) => {
       alignItems={"center"}
       justifyContent={"center"}
       color="mecord-main"
+      data-testid="test"
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       {children}
