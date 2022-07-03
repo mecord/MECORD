@@ -1,5 +1,14 @@
 # MECORD
 
+MECORD is useful in helping to track and view the patient's medical history so that it is easier for health institutions to recap the patient's health data. In addition, hospitals can also reduce costs in recording written data on paper, and make it easier for patients to find the data they need.
+
+## Feature
+
+* User Registration
+* User Personal data and Medical Record Validation
+* Download generated QR Code for each user
+* Dashboard for Hospital
+
 ## Getting Started
 
 First, run First, install all needed dependencies:
