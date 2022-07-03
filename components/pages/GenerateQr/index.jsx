@@ -1,26 +1,21 @@
-import {
-  Button,
-  Center,
-  Flex,
-  Stack,
-  Text,
-  useDisclosure,
-  VStack,
-} from "@chakra-ui/react";
-import ModalEmail from "../../atoms/ModalEmail";
-import QRCode from "react-qr-code";
+import { Button, Center, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import QRCode from "qrcode.react";
 import { useDataVerif } from "../../../store/dataVerifStore";
+import { useRegist } from "../../../store/registrationStore";
 
 const GenerateQrCode = () => {
-  const {
-    isOpen: isEmailOpen,
-    onOpen: onEmailOpen,
-    onClose: onEmailClose,
-  } = useDisclosure();
+  const { regist } = useRegist((state) => state);
 
   const { dataVerif } = useDataVerif((state) => state);
 
   const values = JSON.stringify(dataVerif);
+
+  const downloadQrCode = function () {
+    const link = document.createElement("a");
+    link.download = `Mecord-${regist.nama_lengkap}.png`;
+    link.href = document.getElementById("canvas").toDataURL();
+    link.click();
+  };
 
   return (
     <Stack px={[10, null, 20]} py={[6, null, 10]} spacing="14">
@@ -40,7 +35,13 @@ const GenerateQrCode = () => {
           rounded="10"
         >
           <Center>
-            <QRCode value={values} bgColor="#fff" fgColor="#black" size="280" />
+            <QRCode
+              value={values}
+              id="canvas"
+              size={280}
+              level={"H"}
+              includeMargin={true}
+            />
           </Center>
         </Stack>
         <Stack
@@ -69,11 +70,10 @@ const GenerateQrCode = () => {
         </Stack>
       </Flex>
       <Center>
-        <Button variant="blue" onClick={onEmailOpen}>
+        <Button variant="blue" type="button" onClick={downloadQrCode}>
           Selesai & Download
         </Button>
       </Center>
-      <ModalEmail isOpen={isEmailOpen} onClose={onEmailClose} />
     </Stack>
   );
 };
