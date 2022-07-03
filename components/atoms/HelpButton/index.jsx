@@ -10,8 +10,10 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
+import NextImage from "../NextImage";
+import PanduanMecord from "../../../assets/img/panduan-mecord.png";
 
-export const HelpButton = ({ children }) => {
+export const HelpButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -32,9 +34,11 @@ export const HelpButton = ({ children }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>App Guide</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{children}</ModalBody>
+          <ModalBody>
+            <NextImage src={PanduanMecord} w={70} h={70} />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>
